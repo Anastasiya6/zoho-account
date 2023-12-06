@@ -5185,6 +5185,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     isValidWebsite: function isValidWebsite(website) {
       return /^(http|https):\/\/[^ "]+$/.test(website);
+    },
+    isValidPhone: function isValidPhone(phone) {
+      var phoneRegex = /^[+]?[0-9]{1,4}[-.\s]?[(]?[0-9]{1,3}[)]?[-.\s]?[0-9]{1,4}[-.\s]?[0-9]{1,9}$/;
+      return phoneRegex.test(phone);
     }
   }
 });
@@ -27829,7 +27833,7 @@ var render = function () {
         },
       }),
       _vm._v(" "),
-      !_vm.isValidString(_vm.accountPhone)
+      !_vm.isValidPhone(_vm.accountPhone)
         ? _c("span", { staticClass: "error-message" }, [
             _vm._v("Invalid Phone"),
           ])

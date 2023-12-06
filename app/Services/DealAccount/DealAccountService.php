@@ -14,9 +14,9 @@ class DealAccountService
     {
         $zohoApi = new ZohoCrmApi();
 
-        $accountId = $this->createAccount($request,$zohoApi);
+        $account = $this->createAccount($request,$zohoApi);
 
-        if($accountId){
+        if($account){
 
             $deal = $this->createDeal($request,$zohoApi);
 
@@ -44,7 +44,7 @@ class DealAccountService
 
         $this->messages[] = "Account - " . $response['data'][0]['message']??"";
 
-        return $response['data'][0]['details']['id']??0;
+        return $response['data'][0]['code'] == 'SUCCESS';
 
     }
 
@@ -55,6 +55,7 @@ class DealAccountService
                 [
                     'Deal_Name' => $request->dealName,
                     'Stage' => $request->dealStage,
+                    'Account_Name' => $request->accountName,
                 ],
             ],
         ];

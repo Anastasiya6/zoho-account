@@ -27,7 +27,7 @@
         <div class="form-group">
             <label for="accountPhone">Account Phone:</label>
             <input id="accountPhone" v-model="accountPhone" placeholder="Account Phone">
-            <span v-if="!isValidString(accountPhone)" class="error-message">Invalid Phone</span>
+            <span v-if="!isValidPhone(accountPhone)" class="error-message">Invalid Phone</span>
         </div>
 
         <button @click="createDealAndAccount">Create Deal and Account</button>
@@ -88,6 +88,10 @@
             },
             isValidWebsite(website) {
                 return /^(http|https):\/\/[^ "]+$/.test(website);
+            },
+            isValidPhone(phone) {
+                const phoneRegex = /^[+]?[0-9]{1,4}[-.\s]?[(]?[0-9]{1,3}[)]?[-.\s]?[0-9]{1,4}[-.\s]?[0-9]{1,9}$/;
+                return phoneRegex.test(phone);
             },
         }
     };
